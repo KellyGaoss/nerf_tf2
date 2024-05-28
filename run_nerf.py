@@ -349,6 +349,7 @@ def render_path(render_poses, hwf, chunk, render_kwargs, gt_imgs=None, savedir=N
     disps = []
 
     t = time.time()
+    print("len of render poses is ", len(render_poses))
     for i, c2w in enumerate(render_poses):
         print(i, time.time() - t)
         t = time.time()
@@ -561,8 +562,10 @@ def config_parser():
                         help='frequency of weight ckpt saving')
     parser.add_argument("--i_testset", type=int, default=50000,
                         help='frequency of testset saving')
-    parser.add_argument("--i_video",   type=int, default=50000,
-                        help='frequency of render_poses video saving')
+    # parser.add_argument("--i_video",   type=int, default=50000,
+    #                     help='frequency of render_poses video saving')
+    parser.add_argument("--i_video",   type=int, default=300,
+                         help='frequency of render_poses video saving')
 
     return parser
 
@@ -726,8 +729,8 @@ def train():
         print('done')
         i_batch = 0
 
-    # N_iters = 1000000
-    N_iters = 300001
+    N_iters = 301
+    # N_iters = 300001
     print('Begin')
     print('TRAIN views are', i_train)
     print('TEST views are', i_test)
